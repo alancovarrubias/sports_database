@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_014243) do
+ActiveRecord::Schema.define(version: 2019_09_26_021848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "seasons", force: :cascade do |t|
     t.integer "year"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "season_id"
+    t.string "name"
+    t.string "abbr"
+    t.string "city"
+    t.index ["season_id"], name: "index_teams_on_season_id"
   end
 
   create_table "users", force: :cascade do |t|

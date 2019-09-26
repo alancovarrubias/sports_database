@@ -1,14 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Season, type: :model do
-  it "is valid with a year" do
+  it "is valid with a season, name, abbr, city" do
     expect(FactoryBot.build(:season)).to be_valid
   end
 
   it "is invalid without a year" do
-    season = FactoryBot.build(:season, year: nil)
-    season.valid?
-    expect(season.errors[:year]).to include("can't be blank")
+    expect(FactoryBot.build(:season, year: nil)).to_not be_valid
   end
 
   it "is invalid with a duplicate year" do
