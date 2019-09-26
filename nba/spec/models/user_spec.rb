@@ -5,23 +5,12 @@ RSpec.describe User, type: :model do
     expect(FactoryBot.build(:user)).to be_valid
   end
 
-  it "is invalid without a first name" do
-    expect(FactoryBot.build(:user, first_name: nil)).to_not be_valid
-  end
-
-  it "is invalid without a last name" do
-    expect(FactoryBot.build(:user, last_name: nil)).to_not be_valid
-  end
-
-  it "is invalid without an email address" do
-    expect(FactoryBot.build(:user, email: nil)).to_not be_valid
-  end
-
-  it "is invalid with a duplicate email address" do
-    FactoryBot.create(:user, email: "tester@example.com")
-    user = FactoryBot.build(:user, email: "tester@example.com")
-    user.valid?
-    expect(user.errors[:email]).to include("has already been taken")
+  describe "validations" do
+    it { should have_secure_password }
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email) }
   end
 
   it "returns a user's full name as a string" do
