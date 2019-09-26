@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "is valid with a first name, last name, email, and password_digest" do
+  it "FactoryBot is valid" do
     expect(FactoryBot.build(:user)).to be_valid
   end
 
