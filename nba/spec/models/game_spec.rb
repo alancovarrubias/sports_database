@@ -9,5 +9,10 @@ RSpec.describe Game, type: :model do
     it { should belong_to(:season) }
     it { should belong_to(:away_team).class_name("Team") }
     it { should belong_to(:home_team).class_name("Team") }
+    it { should have_many(:stats).dependent(:destroy) }
+  end
+
+  describe "validations" do
+    it { should validate_presence_of(:date) }
   end
 end
