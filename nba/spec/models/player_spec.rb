@@ -15,6 +15,6 @@ RSpec.describe Player, type: :model do
     it  { should validate_presence_of(:name) }
     it  { should validate_presence_of(:abbr) }
     it  { should validate_presence_of(:idstr) }
-    it  { should validate_uniqueness_of(:idstr).scoped_to(:season_id) }
+    it  { should validate_uniqueness_of(:idstr).scoped_to(:season_id, :team_id) }
   end
 end

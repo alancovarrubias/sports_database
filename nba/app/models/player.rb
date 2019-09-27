@@ -5,5 +5,5 @@ class Player < ApplicationRecord
 
   validates :name, presence: true
   validates :abbr, presence: true
-  validates :idstr, presence: true, uniqueness: { scope: :season_id }
+  validates :idstr, presence: true, uniqueness: { scope: [:season_id, :team_id] }
 end
