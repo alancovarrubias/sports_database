@@ -1,15 +1,26 @@
 import React from 'react'
-import { create } from 'react-test-renderer'
+import ReactDOM from 'react-dom'
+import { act } from 'react-dom/test-utils'
 
 import Seasons from './Seasons'
 
-let instance = null
+let container
 beforeEach(() => {
-  const component = create(<Seasons />)
-  instance = component.root
+    container = document.createElement('div')
+    document.body.appendChild(container)
 })
 
-it('renders Seasons title', () => {
-  const header = instance.findByType('h1')
-  expect(header.children).toStrictEqual(['Seasons'])
+afterEach(() => {
+    document.body.removeChild(container)
+    container = null
+})
+
+describe('Seasons component', () => {
+  test('it shows expected text', () => {
+    act(() => {
+      ReactDOM.render(<Seasons sport='NBA' />, container)
+    })
+    const header = container.getElementsByTagName('h1')[0]
+    expect(header.textContent).toBe('NBA Seasons')
+  })
 })
