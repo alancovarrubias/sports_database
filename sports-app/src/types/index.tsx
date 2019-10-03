@@ -1,10 +1,4 @@
-export interface SeasonsComponentProps {
-  sport: string,
-  seasons: Array<Season>,
+export enum Sports {
+  NBA = 'NBA',
+  MLB = 'MLB',
 }
-
-export interface Season {
-  id: number,
-  year: number,
-}
-

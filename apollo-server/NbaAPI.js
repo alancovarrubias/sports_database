@@ -3,7 +3,7 @@ const { RESTDataSource } = require('apollo-datasource-rest')
 class NbaAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'http://localhost:3000/api/';
+    this.baseURL = 'http://localhost:3001/api/';
   }
 
   async getSeasons() {

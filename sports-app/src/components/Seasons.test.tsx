@@ -19,8 +19,7 @@ describe('Seasons component', () => {
   beforeEach(() => {
     act(() => {
       const sport = 'NBA'
-      const seasons = [{ id: 1, year: 2019 }]
-      ReactDOM.render(<Seasons sport={sport} seasons={seasons} />, container)
+      ReactDOM.render(<Seasons sport={sport} />, container)
     })
   })
 
