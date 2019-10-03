@@ -1,7 +1,18 @@
 import React from 'react'
 
-const Seasons: React.FC = (props) => (
-  <h1>{props.sport} Seasons</h1>
-)
+import { SeasonsComponentProps } from '../types'
 
-export default Seasons
+const SeasonsComponent: React.FC<SeasonsComponentProps> = ({ sport, seasons }) => {
+  return (
+    <div>
+      <h1>{sport} Seasons</h1>
+      <ul>
+        {seasons.map(season =>  (
+          <li key={season.id}>{ season.year }</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export default SeasonsComponent

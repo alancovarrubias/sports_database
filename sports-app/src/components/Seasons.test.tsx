@@ -16,11 +16,22 @@ afterEach(() => {
 })
 
 describe('Seasons component', () => {
-  test('it shows expected text', () => {
+  beforeEach(() => {
     act(() => {
-      ReactDOM.render(<Seasons sport='NBA' />, container)
+      const sport = 'NBA'
+      const seasons = [{ id: 1, year: 2019 }]
+      ReactDOM.render(<Seasons sport={sport} seasons={seasons} />, container)
     })
+  })
+
+  test('it shows expected header', () => {
     const header = container.getElementsByTagName('h1')[0]
     expect(header.textContent).toBe('NBA Seasons')
+  })
+
+  test('it shows list of seasons', () => {
+    const seasonListItems = container.getElementsByTagName('li')
+    expect(seasonListItems.length).toBe(1)
+    expect(seasonListItems[0].textContent).toBe('2019')
   })
 })

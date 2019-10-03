@@ -1,26 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Seasons from './components/Seasons'
+
+const seasons = [
+  { id: 1, year: 2019 },
+  { id: 2, year: 2018 },
+  { id: 3, year: 2017 },
+]
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Seasons sport='NBA' seasons={seasons} />
+  )
 }
 
 export default App;
