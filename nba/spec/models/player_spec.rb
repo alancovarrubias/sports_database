@@ -8,13 +8,12 @@ RSpec.describe Player, type: :model do
   describe "associations" do
     it { should belong_to(:season) }
     it { should belong_to(:team) }
-    it { should have_many(:stats).dependent(:destroy) }
+    it { should have_many(:player_stats).dependent(:destroy) }
   end
 
   describe "validations" do
     it  { should validate_presence_of(:name) }
     it  { should validate_presence_of(:abbr) }
-    it  { should validate_presence_of(:idstr) }
-    it  { should validate_uniqueness_of(:idstr).scoped_to(:season_id, :team_id) }
+    it  { should validate_uniqueness_of(:abbr).scoped_to(:season_id, :team_id) }
   end
 end

@@ -2,7 +2,8 @@ class Season < ApplicationRecord
   has_many :teams, dependent: :destroy
   has_many :players, dependent: :destroy
   has_many :games, dependent: :destroy
-  has_many :stats, dependent: :destroy
+  has_many :team_stats, dependent: :destroy
+  has_many :player_stats, dependent: :destroy
 
   validates :year, presence: true, uniqueness: true
 end

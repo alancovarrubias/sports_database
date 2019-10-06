@@ -10,19 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_052802) do
+ActiveRecord::Schema.define(version: 2019_10_06_223427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "game_days", force: :cascade do |t|
+    t.bigint "season_id"
+    t.date "date"
+    t.index ["season_id"], name: "index_game_days_on_season_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.bigint "season_id"
+    t.bigint "game_day_id"
     t.bigint "away_team_id"
     t.bigint "home_team_id"
-    t.date "date"
     t.index ["away_team_id"], name: "index_games_on_away_team_id"
+    t.index ["game_day_id"], name: "index_games_on_game_day_id"
     t.index ["home_team_id"], name: "index_games_on_home_team_id"
     t.index ["season_id"], name: "index_games_on_season_id"
+  end
+
+  create_table "player_stats", force: :cascade do |t|
+    t.bigint "season_id"
+    t.bigint "game_id"
+    t.bigint "player_id"
+    t.bigint "team_stat_id"
+    t.bigint "opp_team_stat_id"
+    t.integer "period"
+    t.index ["game_id"], name: "index_player_stats_on_game_id"
+    t.index ["opp_team_stat_id"], name: "index_player_stats_on_opp_team_stat_id"
+    t.index ["player_id"], name: "index_player_stats_on_player_id"
+    t.index ["season_id"], name: "index_player_stats_on_season_id"
+    t.index ["team_stat_id"], name: "index_player_stats_on_team_stat_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -30,7 +51,6 @@ ActiveRecord::Schema.define(version: 2019_09_26_052802) do
     t.bigint "team_id"
     t.string "name"
     t.string "abbr"
-    t.string "idstr"
     t.string "position"
     t.index ["season_id"], name: "index_players_on_season_id"
     t.index ["team_id"], name: "index_players_on_team_id"
@@ -40,15 +60,16 @@ ActiveRecord::Schema.define(version: 2019_09_26_052802) do
     t.integer "year"
   end
 
-  create_table "stats", force: :cascade do |t|
+  create_table "team_stats", force: :cascade do |t|
     t.bigint "season_id"
     t.bigint "game_id"
-    t.string "model_type"
-    t.bigint "model_id"
+    t.bigint "team_id"
+    t.bigint "opp_id"
     t.integer "period"
-    t.index ["game_id"], name: "index_stats_on_game_id"
-    t.index ["model_type", "model_id"], name: "index_stats_on_model_type_and_model_id"
-    t.index ["season_id"], name: "index_stats_on_season_id"
+    t.index ["game_id"], name: "index_team_stats_on_game_id"
+    t.index ["opp_id"], name: "index_team_stats_on_opp_id"
+    t.index ["season_id"], name: "index_team_stats_on_season_id"
+    t.index ["team_id"], name: "index_team_stats_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|

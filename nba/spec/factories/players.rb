@@ -3,7 +3,6 @@ FactoryBot.define do
     association :season
     association :team
     name { "name" }
-    abbr { "abbr" }
-    sequence(:idstr) { |n| "idstr#{n}" }
+    sequence(:abbr) { |n| "abbr#{n}" }
   end
 end
