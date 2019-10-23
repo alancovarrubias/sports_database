@@ -8,7 +8,7 @@ RSpec.describe Team, type: :model do
   describe "associations" do
     it { should belong_to(:season) }
     it { should have_many(:players).dependent(:destroy) }
-    it { should have_many(:team_stats).dependent(:destroy) }
+    it { should have_many(:team_stats) }
   end
 
   describe "validations" do

@@ -7,10 +7,11 @@ RSpec.describe Season, type: :model do
 
   describe "associations" do
     it { should have_many(:teams).dependent(:destroy) }
-    it { should have_many(:players).dependent(:destroy) }
-    it { should have_many(:games).dependent(:destroy) }
-    it { should have_many(:team_stats).dependent(:destroy) }
-    it { should have_many(:player_stats).dependent(:destroy) }
+    it { should have_many(:game_days).dependent(:destroy) }
+    it { should have_many(:players) }
+    it { should have_many(:games) }
+    it { should have_many(:team_stats) }
+    it { should have_many(:player_stats) }
   end
 
   describe "validations" do

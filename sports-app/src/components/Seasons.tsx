@@ -15,7 +15,7 @@ interface SeasonsProps {
   sport: string,
 }
 
-const GET_SEASONS = gql`
+export const GET_SEASONS = gql`
   {
     seasons {
       id
